@@ -107,9 +107,8 @@ jobs:
           wc -c cosign.key
           - if: ${{ env.COSIGN_PRIVATE_KEY == "" }}
         run: echo "COSIGN_PRIVATE_KEY isn't set"
-        
-  env:
-    COSIGN_PRIVATE_KEY: ${{ secrets.SIGNING_SECRET }}
+        env:
+          COSIGN_PRIVATE_KEY: ${{ secrets.SIGNING_SECRET }}
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v2
