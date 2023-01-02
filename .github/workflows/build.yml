@@ -100,13 +100,10 @@ jobs:
 
       # Only needed when running `cosign sign` using a key
       - name: Write signing key to disk
-        - if: ${{ env.COSIGN_PRIVATE_KEY != "" }}
         run: |
           echo "${{ env.COSIGN_PRIVATE_KEY }}" > cosign.key
           # DEBUG: get character count of key
           wc -c cosign.key
-        - if: ${{ env.COSIGN_PRIVATE_KEY == "" }}
-        run: echo "COSIGN_PRIVATE_KEY isn't set"
         env:
           COSIGN_PRIVATE_KEY: ${{ secrets.SIGNING_SECRET }}
 
